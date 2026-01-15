@@ -61,3 +61,5 @@ $RECYCLE.BIN/
 # Built Visual Studio Code Extensions
 *.vsix
 
+# crash files from packer
+crash.log
