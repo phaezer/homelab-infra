@@ -1,0 +1,11 @@
+# tofu/talos/image/schematic.yaml
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/amd-ucode
+      - siderolabs/fuse3
+      - siderolabs/iscsi-tools
+      - siderolabs/nfs-utils
+      - siderolabs/nvidia-container-toolkit-production
+      - siderolabs/qemu-guest-agent
+      - siderolabs/tailscale

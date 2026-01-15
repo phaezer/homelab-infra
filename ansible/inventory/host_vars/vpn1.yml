@@ -1,0 +1,3 @@
+---
+vpn_lan_interface: ens19
+vpn_connect_arg: us

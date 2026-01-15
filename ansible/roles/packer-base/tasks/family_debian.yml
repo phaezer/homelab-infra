@@ -1,0 +1,31 @@
+---
+- name: Install base packages for {{ ansible_os_family }}
+  ansible.builtin.apt:
+    name: "{{ base_additional_packages[ansible_os_family] }}"
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Configure SSH for Public Key Authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PubkeyAuthentication'
+    line: 'PubkeyAuthentication yes'
+
+- name: Restart the SSH daemon
+  ansible.builtin.systemd:
+    name: ssh
+    state: restarted
+    daemon_reload: true
+
+- name: Disable systemd tmpfiles
+  ansible.builtin.replace:
+    path: /usr/lib/tmpfiles.d/tmp.conf
+    regexp: '^D'
+    replace: '#D'
+
+- name: Set fqdn in /etc/hosts
+  when: not cloudinit and fqdn is defined
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: "{{ ansible_facts['default_ipv4']['address'] }} {{ fqdn }}"

@@ -1,0 +1,8 @@
+customization:
+  systemExtensions:
+    officialExtensions:
+      - siderolabs/cloudflared
+      - siderolabs/nut-client
+      - siderolabs/nvidia-container-toolkit-production
+      - siderolabs/qemu-guest-agent
+      - siderolabs/tailscale

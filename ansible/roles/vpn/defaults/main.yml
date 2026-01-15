@@ -1,0 +1,4 @@
+---
+vpn_lan_interface: lan
+vpn_connect_arg: us
+vpn_nordvpn_token: ""

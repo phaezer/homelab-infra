@@ -1,0 +1,9 @@
+---
+- name: Restart logrotate
+  ansible.builtin.service:
+    name: logrotate
+    state: restarted
+
+- name: Apply netplan configuration
+  ansible.builtin.command: netplan apply
+  changed_when: false

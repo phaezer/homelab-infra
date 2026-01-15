@@ -1,0 +1,3 @@
+---
+- name: Include bind configuration tasks
+  ansible.builtin.import_tasks: bind.yml

@@ -1,0 +1,25 @@
+---
+- name: Configure BIND general settings
+  oxlorg.opnsense.bind_general:
+    enabled: true
+    listen_ipv4: "0.0.0.0"
+    listen_ipv6: "::"
+    port: 53
+
+- name: Configure primary DNS zones
+  oxlorg.opnsense.bind_domain:
+    name: "{{ item.zone_name }}"
+    ttl: "{{ item.ttl | default(86400) }}"
+    refresh: "{{ item.refresh | default(21600) }}"
+    retry: "{{ item.retry | default(3600) }}"
+    expire: "{{ item.expire | default(3542400) }}"
+    negative: "{{ item.negative | default(3600) }}"
+    admin_mail: "{{ item.admin_mail | default(bind_default_dns_admin_mail) }}"
+    server: "{{ item.server | default(ansible_host) }}"
+  loop: "{{ bind_zones }}"
+
+- name: Configure DNS records for zones
+  ansible.builtin.include_tasks: bind_zone.yml
+  loop: "{{ bind_zones }}"
+  loop_control:
+    loop_var: zone

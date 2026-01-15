@@ -1,0 +1,43 @@
+
+---
+#  config map for Ceph CSI driver
+apiVersion: v1
+kind: ConfigMap
+data:
+  config.json: |-
+    [
+      {
+        "clusterID": "b9127830-b0cc-4e34-aa47-9d1a2e9949a8",
+        "monitors": [
+          "192.168.1.1:6789",
+          "192.168.1.2:6789",
+          "192.168.1.3:6789"
+        ]
+      }
+    ]
+metadata:
+  name: ceph-csi-config
+
+---
+# config map for Ceph cluster configuration
+apiVersion: v1
+kind: ConfigMap
+data:
+  ceph.conf: |
+    [global]
+    auth_cluster_required = cephx
+    auth_service_required = cephx
+    auth_client_required = cephx
+  keyring: ""
+metadata:
+  name: ceph-config
+
+---
+# empty config map for KMS encryption config as kms is not enabled currently
+apiVersion: v1
+kind: ConfigMap
+data:
+  config.json: |-
+    {}
+metadata:
+  name: ceph-csi-encryption-kms-config

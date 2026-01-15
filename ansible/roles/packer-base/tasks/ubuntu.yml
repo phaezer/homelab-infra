@@ -1,0 +1,18 @@
+---
+- name: Configuring cloud-init
+  when: cloudinit
+  block:
+    - name: Remove default cloud-init network config files
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /etc/cloud/cloud.cfg.d/subiquity-disable-cloudinit-networking.cfg
+        - /etc/cloud/cloud.cfg.d/99-installer.cfg
+        - /etc/netplan/00-installer-config.yaml
+
+    - name: Set cloud.cfg NoCloud and ConfigDrive data sources
+      ansible.builtin.copy:
+        content: "datasource_list: [ NoCloud, ConfigDrive ]"
+        dest: /etc/cloud/cloud.cfg.d/99_pve.cfg
+        mode: '0644'

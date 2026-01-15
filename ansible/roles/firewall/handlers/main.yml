@@ -1,0 +1,4 @@
+---
+- name: Reload BIND
+  oxlorg.opnsense.reload:
+    target: bind

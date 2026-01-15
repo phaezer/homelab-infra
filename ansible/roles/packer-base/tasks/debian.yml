@@ -1,0 +1,9 @@
+---
+- name: "Configuring cloud-init."
+  when: cloudinit
+  block:
+    - name: "Set cloud.cfg NoCloud and ConfigDrive data sources"
+      ansible.builtin.copy:
+        content: "datasource_list: [ NoCloud, ConfigDrive ]"
+        dest: /etc/cloud/cloud.cfg.d/99_pve.cfg
+        mode: '0644'

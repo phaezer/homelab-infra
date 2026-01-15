@@ -1,0 +1,39 @@
+---
+- name: Configure proxmox servers
+  hosts: proxmox
+  become: true
+  become_user: root
+  tasks:
+    - name: Set variables
+      ansible.builtin.set_fact:
+        _terraform_user: "{{ terraform_user | default('terraform') }}"
+
+    - name: Configure Terraform Proxmox User
+      ansible.builtin.user:
+        name: "{{ _terraform_user }}"
+        comment: "Proxmox Terraform User"
+        shell: /bin/bash
+        state: present
+        create_home: true
+
+    - name: Ensure Proxmox Terraform User has sudo privileges
+      ansible.builtin.copy:
+        dest: "/etc/sudoers.d/{{ _terraform_user }}"
+        content: "{{ _terraform_user }} ALL=(ALL) NOPASSWD:ALL"
+        mode: '0440'
+
+    - name: Copy Proxmox Terraform User SSH Key
+      when: terraform_user_ssh_key is defined
+      ansible.posix.authorized_key:
+        user: "{{ _terraform_user }}"
+        key: "{{ terraform_user_ssh_key }}"
+        path: "/home/{{ _terraform_user }}/.ssh/authorized_keys"
+        exclusive: true
+
+    - name: Copy Proxmox Terraform User SSH Key from file
+      when: terraform_user_ssh_key_file is defined
+      ansible.posix.authorized_key:
+        user: "{{ _terraform_user }}"
+        key: "{{ lookup('file', terraform_user_ssh_key_file) }}"
+        path: "/home/{{ _terraform_user }}/.ssh/authorized_keys"
+        exclusive: true

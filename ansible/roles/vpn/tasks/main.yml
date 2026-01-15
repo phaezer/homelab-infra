@@ -1,0 +1,152 @@
+---
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - iptables-persistent
+      - openvpn
+    state: present
+    update_cache: true
+
+- name: Enable ip forwarding
+  ansible.posix.sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    state: present
+    reload: true
+
+- name: Configure netplan interfaces
+  ansible.builtin.template:
+    src: netplan-interfaces.yaml.j2
+    dest: /etc/netplan/01-{{ vpn_lan_interface }}.yaml
+    mode: '0644'
+  notify: Apply netplan configuration
+
+- name: Check if NordVPN is installed
+  ansible.builtin.stat:
+    path: /usr/bin/nordvpn
+  register: nordvpn_agent
+
+- name: Install NordVPN
+  when: not nordvpn_agent.stat.exists
+  block:
+    - name: Get NordVPN install script
+      ansible.builtin.get_url:
+        url: https://downloads.nordcdn.com/apps/linux/install.sh
+        dest: /tmp/nordvpn_install.sh
+        mode: '0755'
+
+    - name: Install NordVPN agent if not present
+      ansible.builtin.command: bash /tmp/nordvpn_install.sh
+      args:
+        creates: /usr/bin/nordvpn
+
+    - name: Set NordVPN settings
+      become: true
+      ansible.builtin.shell: |
+        nordvpn set technology nordlynx && \
+        nordvpn set routing on && \
+        nordvpn set lan-discovery on
+      changed_when: false
+
+- name: Install vpn control scripts
+  block:
+    - name: Install VPN reconnect script
+      ansible.builtin.copy:
+        src: nordvpn_reconnect.sh
+        dest: /usr/local/bin/nordvpn_reconnect
+        mode: '0755'
+
+    - name: Install WAN test script
+      ansible.builtin.copy:
+        src: test_wan.sh
+        dest: /usr/local/bin/test_wan
+        mode: '0755'
+
+    - name: Install VPN test and reconnect script
+      ansible.builtin.copy:
+        src: nordvpn_check_and_reconnect.sh
+        dest: /usr/local/bin/nordvpn_check_and_reconnect
+        mode: '0755'
+
+- name: Install ip tables and if-up scripts
+  block:
+    - name: Install iptables rule template file
+      ansible.builtin.template:
+        src: iptables.v4.j2
+        dest: /etc/iptables/rules.v4
+        mode: '0644'
+
+    - name: Install post-up script for loading ip tables
+      ansible.builtin.copy:
+        dest: /etc/network/if-up.d/50-iptables-load
+        content: |
+          #!/bin/sh
+          iptables-restore < /etc/iptables/rules.v4
+        mode: '0755'
+
+    - name: Install post-up script for starting VPN
+      ansible.builtin.copy:
+        dest: /etc/network/if-up.d/99-start-nordvpn
+        content: |
+          #!/bin/sh
+          /usr/bin/nordvpn connect {{ vpn_connect_arg }} && \
+          sleep 5 && \
+          /usr/bin/nordvpn set killswitch on
+        mode: '0755'
+
+- name: Install logrotate configuration
+  block:
+    - name: Create log directory for nordvpn
+      ansible.builtin.file:
+        path: /var/log/nordvpn
+        state: directory
+        owner: root
+        group: nordvpn
+        mode: '0750'
+
+    - name: Install logrotate config for nordvpn logs
+      ansible.builtin.copy:
+        src: nordvpn.log
+        dest: /etc/logrotate.d/nordvpn
+        mode: '0644'
+      notify: Restart logrotate
+
+- name: Log in and connect to NordVPN
+  block:
+    - name: Log in to NordVPN
+      ansible.builtin.command: nordvpn login --token {{ vpn_nordvpn_token }}
+      register: nordvpn_login
+      changed_when: false
+      failed_when: "'already logged in' not in nordvpn_login.stdout and nordvpn_login.rc != 0"
+      # no_log: true
+
+    - name: Ensure NordVPN is logged in
+      ansible.builtin.command: nordvpn account
+      register: nordvpn_account
+      changed_when: false
+      failed_when: "'not logged in' in nordvpn_account.stdout or nordvpn_account.rc != 0"
+
+    - name: Load iptables rules
+      ansible.builtin.command: /bin/bash /etc/network/if-up.d/50-iptables-load
+      changed_when: false
+
+    - name: Connect to NordVPN
+      ansible.builtin.command: /bin/bash /etc/network/if-up.d/99-start-nordvpn
+      changed_when: false
+
+- name: Configure cron jobs for VPN maintenance
+  block:
+    - name: Add cron job to test and reconnect VPN every 5 minutes
+      ansible.builtin.cron:
+        name: "Test and reconnect NordVPN"
+        user: root
+        minute: "*/5"
+        job: /usr/local/bin/nordvpn_check_and_reconnect {{ vpn_lan_interface }} {{ vpn_connect_arg }}
+
+    - name: Add cron job to reconnect VPN daily
+      ansible.builtin.cron:
+        name: Reconnect to NordVPN daily
+        user: root
+        minute: 0
+        hour: 3
+        job: /usr/local/bin/nordvpn_reconnect {{ vpn_lan_interface }} {{ vpn_connect_arg }}

@@ -1,0 +1,71 @@
+---
+- name: Prepare to bootstrap proxmox hosts for ansible
+  hosts: localhost
+  vars_prompt:
+    - name: public_key
+      prompt: What is the path to the public key?
+      private: false
+
+    - name: target_hosts
+      prompt: What hosts should be bootstrapped? (e.g., pve1,pve2)
+      private: false
+
+  tasks:
+    - name: Split hosts
+      ansible.builtin.set_fact:
+        target_hosts_list: "{{ target_hosts.split(',') }}"
+
+    - name: Add hosts
+      ansible.builtin.add_host:
+        name: "{{ item }}"
+        groups: proxmox_bootstrap_hosts
+      loop: "{{ target_hosts_list }}"
+
+- name: Bootstrap proxmox hosts for ansible
+  become: true
+  gather_facts: true
+  hosts: proxmox_bootstrap_hosts
+
+  tasks:
+    - name: Get
+      ansible.builtin.assert:
+        that:
+          - public_key is defined
+        fail_msg: |
+          You must provide the path to a public key using -e public_key=/path/to/key.pub
+
+    - name: Install sudo
+      ansible.builtin.apt:
+        name: sudo
+        state: present
+        cache_valid_time: 3600
+        force_apt_get: true
+
+    - name: Install common packages
+      ansible.builtin.package:
+        name:
+          - vim
+          - git
+          - curl
+          - wget
+        state: present
+
+    - name: Add ansible user and set groups
+      ansible.builtin.user:
+        name: ansible
+        groups: sudo
+        home: "/home/ansible"
+
+    - name: Allow ansible user to have passwordless sudo
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/ansible
+        line: "ansible ALL=(ALL) NOPASSWD: ALL"
+        mode: '0440'
+        create: true
+
+    - name: Create ansible's authorized_keys
+      ansible.posix.authorized_key:
+        user: ansible
+        path: "/home/ansible/.ssh/authorized_keys"
+        key: "{{ lookup('file', public_key) }}"
+        exclusive: true

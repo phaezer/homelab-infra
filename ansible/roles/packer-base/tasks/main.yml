@@ -1,0 +1,21 @@
+---
+- name: Setting custom facts
+  ansible.builtin.set_fact:
+    cloudinit: "{{ cloudinit | default('false') }}"
+
+- name: Set hostname
+  when: not cloudinit and hostname is defined
+  ansible.builtin.hostname:
+    name: "{{ hostname }}"
+
+- name: Prepare os family {{ ansible_os_family }}
+  ansible.builtin.include_tasks: "family_{{ ansible_os_family | lower }}.yml"
+  when: ansible_facts['distribution'] == 'Debian'
+
+- name: Prepare os {{ ansible_facts['distribution'] }}
+  ansible.builtin.include_tasks: "{{ ansible_facts['distribution'] | lower }}.yml"
+  when: ansible_facts['distribution'] == 'Ubuntu'
+
+- name: Prepare os {{ ansible_facts['distribution'] }}
+  ansible.builtin.include_tasks: "{{ ansible_facts['distribution'] | lower }}.yml"
+  when: ansible_facts['distribution'] == 'Debian'

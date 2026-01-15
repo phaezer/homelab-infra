@@ -1,0 +1,133 @@
+2025/12/15 13:48:12 [INFO] Packer version: 1.14.3 [go1.24.0 darwin arm64]
+2025/12/15 13:48:12 [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2025/12/15 13:48:12 [INFO] PACKER_CONFIG env var set; attempting to open config file: /Users/eric/.packerconfig
+2025/12/15 13:48:12 [WARN] Config file doesn't exist: /Users/eric/.packerconfig
+2025/12/15 13:48:12 [INFO] Setting cache directory: /Users/eric/.cache/packer
+2025/12/15 13:48:12 [TRACE] listing potential installations for "github.com/hashicorp/ansible" that match "~> 1". plugingetter.ListInstallationsOptions{PluginDirectory:"/Users/eric/.config/packer/plugins", BinaryInstallationOptions:plugingetter.BinaryInstallationOptions{APIVersionMajor:"5", APIVersionMinor:"0", OS:"darwin", ARCH:"arm64", Ext:"", Checksummers:[]plugingetter.Checksummer{plugingetter.Checksummer{Type:"sha256", Hash:(*sha256.Digest)(0x14000154f80)}}, ReleasesOnly:false}}
+2025/12/15 13:48:12 [TRACE] Found the following "github.com/hashicorp/ansible" installations: [{/Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 v1.1.4 x5.0}]
+2025/12/15 13:48:12 found external [-packer-default-plugin-name- local] provisioner from ansible plugin
+2025/12/15 13:48:12 [TRACE] listing potential installations for "github.com/hashicorp/proxmox" that match ">= 1.2.3". plugingetter.ListInstallationsOptions{PluginDirectory:"/Users/eric/.config/packer/plugins", BinaryInstallationOptions:plugingetter.BinaryInstallationOptions{APIVersionMajor:"5", APIVersionMinor:"0", OS:"darwin", ARCH:"arm64", Ext:"", Checksummers:[]plugingetter.Checksummer{plugingetter.Checksummer{Type:"sha256", Hash:(*sha256.Digest)(0x14000154f80)}}, ReleasesOnly:false}}
+2025/12/15 13:48:12 [TRACE] Found the following "github.com/hashicorp/proxmox" installations: [{/Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 v1.2.3 x5.0}]
+2025/12/15 13:48:12 [INFO] found external [-packer-default-plugin-name- clone iso] builders from proxmox plugin
+2025/12/15 13:48:12 [TRACE] listing potential installations for <nil> that match "". plugingetter.ListInstallationsOptions{PluginDirectory:"/Users/eric/.config/packer/plugins", BinaryInstallationOptions:plugingetter.BinaryInstallationOptions{APIVersionMajor:"5", APIVersionMinor:"0", OS:"darwin", ARCH:"arm64", Ext:"", Checksummers:[]plugingetter.Checksummer{plugingetter.Checksummer{Type:"sha256", Hash:(*sha256.Digest)(0x1400063e500)}}, ReleasesOnly:false}}
+2025/12/15 13:48:12 found external [-packer-default-plugin-name- local] provisioner from ansible plugin
+2025/12/15 13:48:12 [INFO] found external [-packer-default-plugin-name- clone iso] builders from proxmox plugin
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_lan_nameservers, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for proxmox_api_token_secret, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_timezone, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_hostname, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_lan_ip_address, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for proxmox_user, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_wan_bridge_interface, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_wan_subnet_prefix, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for ansible_ssh_public_key, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for proxmox_node, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_storage_pool, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_lan_subnet, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vpn_connect_arg, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_wan_ip_address, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_memory, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_cores, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_lan_mac_address, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for build_ssh_password, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for common_cloud_init_storage, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for common_iso_storage, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for proxmox_hostname, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_fqdn, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for build_ssh_username, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_lan_bridge_interface, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_lan_subnet_prefix, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_wan_mac_address, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for vm_wan_gateway_ip, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for admin_ssh_public_key, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for ansible_user, so skipping
+2025/12/15 13:48:12 [TRACE] validateValue: not active for proxmox_password, so skipping
+2025/12/15 13:48:12 [TRACE] Using protobuf for communication with plugins
+2025/12/15 13:48:12 [INFO] Starting external plugin /Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 start builder --protobuf iso
+2025/12/15 13:48:12 Starting plugin: /Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 []string{"/Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64", "start", "builder", "--protobuf", "iso"}
+2025/12/15 13:48:12 Waiting for RPC address for: /Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Plugin address: unix /var/folders/5n/1p0h2kwn30l8djvsbzs99kwm0000gn/T/packer-plugin3797148349
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Waiting for connection...
+2025/12/15 13:48:12 Received unix RPC address for /Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64: addr is /var/folders/5n/1p0h2kwn30l8djvsbzs99kwm0000gn/T/packer-plugin3797148349
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Serving a plugin connection...
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 [TRACE] starting builder iso
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 [DEBUG] - common: sending ConfigSpec as protobuf
+2025/12/15 13:48:12 [DEBUG] - common: receiving ConfigSpec as protobuf
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Disk 0 cache mode not set, using default 'none'
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Cloud-Init disk type not set, using default 'ide'
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 boot_iso device type not set, using default type 'ide' and index '2'
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 [DEBUG] - common: sending ConfigSpec as protobuf
+2025/12/15 13:48:12 [DEBUG] - common: receiving ConfigSpec as protobuf
+2025/12/15 13:48:12 [INFO] Starting external plugin /Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 start provisioner --protobuf -packer-default-plugin-name-
+2025/12/15 13:48:12 Starting plugin: /Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 []string{"/Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64", "start", "provisioner", "--protobuf", "-packer-default-plugin-name-"}
+2025/12/15 13:48:12 Waiting for RPC address for: /Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Plugin address: unix /var/folders/5n/1p0h2kwn30l8djvsbzs99kwm0000gn/T/packer-plugin4167502028
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Waiting for connection...
+2025/12/15 13:48:12 Received unix RPC address for /Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64: addr is /var/folders/5n/1p0h2kwn30l8djvsbzs99kwm0000gn/T/packer-plugin4167502028
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 Serving a plugin connection...
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 [TRACE] starting provisioner -packer-default-plugin-name-
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 [DEBUG] - common: sending ConfigSpec as protobuf
+2025/12/15 13:48:12 [DEBUG] - common: receiving ConfigSpec as protobuf
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 ansible-playbook version: 2.18.6
+2025/12/15 13:48:12 packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 [DEBUG] - common: sending ConfigSpec as protobuf
+2025/12/15 13:48:12 [DEBUG] - common: receiving ConfigSpec as protobuf
+2025/12/15 13:48:12 ui: Debug mode enabled. Builds will not be parallelized.
+2025/12/15 13:48:12 ui: [1;32mproxmox-iso.ubuntu-vpn-gateway: output will be in this color.[0m
+2025/12/15 13:48:12 ui: 
+2025/12/15 13:48:12 Build debug mode: true
+2025/12/15 13:48:12 Force build: true
+2025/12/15 13:48:12 On error: 
+2025/12/15 13:48:12 Debug enabled, so waiting for build to finish: proxmox-iso.ubuntu-vpn-gateway
+2025/12/15 13:48:12 Starting build run: proxmox-iso.ubuntu-vpn-gateway
+2025/12/15 13:48:12 Running builder: proxmox-iso
+2025/12/15 13:48:12 [INFO] (telemetry) Starting builder proxmox-iso.ubuntu-vpn-gateway
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 using token auth
+2025/12/15 13:48:12 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:12 No CD files specified. CD disk will not be made.
+2025/12/15 13:48:12 ui: ask: [1;32m==> proxmox-iso.ubuntu-vpn-gateway: Pausing after run of step 'StepCreateCD'. Press enter to continue.[0m
+2025/12/15 13:48:13 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 2025/12/15 13:48:13 No URLs were provided to Step Download. Continuing...
+2025/12/15 13:48:13 ui: ask: [1;32m==> proxmox-iso.ubuntu-vpn-gateway: Pausing after run of step 'StepDownload'. Press enter to continue.[0m
+2025/12/15 13:48:13 ui: ask: [1;32m==> proxmox-iso.ubuntu-vpn-gateway: Pausing after run of step 'stepUploadISO'. Press enter to continue.[0m
+2025/12/15 13:48:14 ui: ask: [1;32m==> proxmox-iso.ubuntu-vpn-gateway: Pausing before cleanup of step 'stepUploadISO'. Press enter to continue.[0m
+2025/12/15 13:48:14 ui: ask: [1;32m==> proxmox-iso.ubuntu-vpn-gateway: Pausing before cleanup of step 'StepDownload'. Press enter to continue.[0m
+2025/12/15 13:48:14 ui: ask: [1;32m==> proxmox-iso.ubuntu-vpn-gateway: Pausing before cleanup of step 'StepCreateCD'. Press enter to continue.[0m
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: panic: runtime error: index out of range [1] with length 1
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: goroutine 51 [running]:
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/common.generateProxmoxDisks({0x14000197c00, 0x1, 0x140003f9978?}, {0x140006d0600, 0x1, 0x105047c58?}, {0x0, 0x0, 0x140003f99b8?})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/common/step_start_vm.go:340 +0x3b7c
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/common.(*stepStartVM).Run(0x1400074dc50, {0x105a9e2b5?, 0x14000147090?}, {0x106008760, 0x140003fd1a0})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/common/step_start_vm.go:110 +0x194
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-sdk/multistep.(*BasicRunner).Run(0x140003fd2f0, {0x106008a38, 0x14000147090}, {0x106008760, 0x140003fd1a0})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-sdk@v0.6.1/multistep/basic_runner.go:73 +0x270
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-sdk/multistep.(*DebugRunner).Run(0x140003fd2c0, {0x106008a38, 0x14000147090}, {0x106008760, 0x140003fd1a0})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-sdk@v0.6.1/multistep/debug_runner.go:87 +0x284
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/common.(*Builder).Run(0x14000681808, {0x106008a38, 0x14000147090}, {0x10600e8e0, 0x140000d9440}, {0x105ffb8c0, 0x140003fd170}, {0x106008760, 0x140003fd1a0})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/common/builder.go:111 +0xb9c
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/iso.(*Builder).Run(0x14000369608, {0x106008a38, 0x14000147090}, {0x10600e8e0, 0x140000d9440}, {0x105ffb8c0, 0x140003fd170})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-proxmox/builder/proxmox/iso/builder.go:47 +0x2ac
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: github.com/hashicorp/packer-plugin-sdk/rpc.(*BuilderServer).Run(0x140006ac0f0, 0x5070808?, 0x140004985bc)
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	github.com/hashicorp/packer-plugin-sdk@v0.6.1/rpc/builder.go:120 +0x1a4
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: reflect.Value.call({0x140000b02a0?, 0x14000120688?, 0x13?}, {0x105a97ad7, 0x4}, {0x140005adef8, 0x3, 0x3?})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	reflect/value.go:584 +0x97c
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: reflect.Value.Call({0x140000b02a0?, 0x14000120688?, 0x1?}, {0x140004966f8?, 0x140004966a8?, 0x1059c0288?})
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	reflect/value.go:368 +0x94
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: net/rpc.(*service).call(0x14000224380, 0x14000224340, 0x1400047a110, 0x1400047a120, 0x14000196b80, 0x1400016e380, {0x105ddbfc0?, 0x140004985b8?, 0x0?}, {0x105daa980?, ...}, ...)
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	net/rpc/server.go:381 +0x200
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: created by net/rpc.(*Server).ServeCodec in goroutine 1
+2025/12/15 13:48:15 packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64 plugin: 	net/rpc/server.go:478 +0x2c4
+2025/12/15 13:48:15 [INFO] (telemetry) ending proxmox-iso.ubuntu-vpn-gateway
+2025/12/15 13:48:15 ui error: [1;31mBuild 'proxmox-iso.ubuntu-vpn-gateway' errored after 2 seconds 691 milliseconds: unexpected EOF[0m
+2025/12/15 13:48:15 Waiting on builds to complete...
+2025/12/15 13:48:15 /Users/eric/.config/packer/plugins/github.com/hashicorp/proxmox/packer-plugin-proxmox_v1.2.3_x5.0_darwin_arm64: plugin process exited
+2025/12/15 13:48:15 ui: 
+==> Wait completed after 2 seconds 691 milliseconds
+2025/12/15 13:48:15 machine readable: error-count []string{"1"}
+2025/12/15 13:48:15 ui error: 
+==> Some builds didn't complete successfully and had errors:
+2025/12/15 13:48:15 machine readable: proxmox-iso.ubuntu-vpn-gateway,error []string{"unexpected EOF"}
+2025/12/15 13:48:15 ui error: --> proxmox-iso.ubuntu-vpn-gateway: unexpected EOF
+2025/12/15 13:48:15 ui: 
+==> Builds finished but no artifacts were created.
+2025/12/15 13:48:15 [INFO] (telemetry) Finalizing.
+2025/12/15 13:48:15 waiting for all plugin processes to complete...
+2025/12/15 13:48:15 /Users/eric/.config/packer/plugins/github.com/hashicorp/ansible/packer-plugin-ansible_v1.1.4_x5.0_darwin_arm64: plugin process exited

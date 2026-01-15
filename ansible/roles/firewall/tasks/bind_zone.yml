@@ -1,0 +1,11 @@
+---
+- name: Configure DNS records for zones
+  oxlorg.opnsense.bind_record:
+    domain: "{{ zone.zone_name }}"
+    name: "{{ record.name }}"
+    type: "{{ record.type | default('A') }}"
+    value: "{{ record.value }}"
+    round_robin: "{{ record.round_robin | default(false) }}"
+  loop: "{{ zone.records }}"
+  loop_control:
+    loop_var: record

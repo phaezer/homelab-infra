@@ -1,0 +1,8 @@
+---
+- name: Configure vpn servers
+  hosts: vpn
+  become: true
+  become_user: root
+  roles:
+    - packer-base
+    - vpn

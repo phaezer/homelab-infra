@@ -1,0 +1,12 @@
+---
+- name: Manage OPNsense Firewalls
+  hosts: firewall
+  connection: local
+  gather_facts: false
+  module_defaults:
+    group/oxlorg.opnsense.all:
+      firewall: "{{ ansible_host }}"
+      api_key: "{{ firewall_key }}"
+      api_secret: "{{ firewall_secret }}"
+  roles:
+    - firewall

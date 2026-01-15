@@ -1,0 +1,17 @@
+network:
+  version: 2
+  ethernets:
+    {{ vpn_lan_interface }}:
+      match:
+        macaddress: "{{ vpn_lan_mac_address }}"
+      set-name: lan
+      addresses:
+        - "{{ vpn_lan_ip_address }}/{{ vpn_lan_subnet_prefix }}"
+      nameservers:
+        addresses:
+{% for item in vpn_lan_name_servers -%}
+          - "{{ item }}"
+{% endfor -%}
+      routes:
+        - to: "{{ vpn_lan_subnet }}"
+          via: "{{ vpn_lan_ip_address }}"

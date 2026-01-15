@@ -1,0 +1,24 @@
+---
+base_additional_packages:
+  Debian:
+    - git
+    - vim
+    - bash-completion
+    - ca-certificates
+    - curl
+    - unzip
+    - wget
+    - iperf3
+    - jq
+    - tmux
+  Ubuntu:
+    - git
+    - vim
+    - bash-completion
+    - ca-certificates
+    - curl
+    - unzip
+    - wget
+    - iperf3
+    - jq
+    - tmux

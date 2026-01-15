@@ -1,0 +1,7 @@
+---
+- name: Configure server templates
+  hosts: all
+  become: true
+  become_user: root
+  roles:
+    - packer-base
